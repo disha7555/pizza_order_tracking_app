@@ -1,0 +1,9 @@
+// @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900;700&display=swap');
+@import './variables';
+$primary:blue;
+
+body{
+    background: $primary;
+    font-family: 'Poppins', sans-serif;
+}
+

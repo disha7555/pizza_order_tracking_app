@@ -8,10 +8,13 @@ const path=require('path');
 app.get('/',(req,res)=>{
     res.render('home');
 });
+//set assets
+app.use(express.static('public'));
 
 //set template engine
 app.use(expressLayout);
 app.set('views',path.join(__dirname,'/resources/views'));
+//app.set('views',path.join(__dirname,'/resources/scss'));
 app.set('view engine','ejs');
 
 
