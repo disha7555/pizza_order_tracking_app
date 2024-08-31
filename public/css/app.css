@@ -1,4 +1,76 @@
 body {
-  background: blue;
   font-family: "Poppins", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  color: #232323;
+}
+
+.cart-icon {
+  color: #b09a7b;
+  display: inline-block;
+}
+
+nav li:last-child:hover {
+  background-color: #8a5e3e;
+}
+
+nav li a {
+  transition: smooth;
+}
+nav li a:hover {
+  color: #9c7248;
+}
+
+.hw-500vh {
+  height: 70vh;
+  width: 70vh;
+}
+
+section.hero {
+  background: #f5e7d0;
+}
+
+.size {
+  background: #f5e7d0;
+}
+
+.add-to-cart {
+  border: 2px solid #b09a7b;
+  color: #b09a7b;
+  transition: all 0.2s ease-in-out;
+}
+.add-to-cart:hover {
+  background: #b09a7b;
+  border-color: #fff;
+  color: #fff;
+}
+
+.btn-primary {
+  background: #b23301;
+}
+.btn-primary:hover {
+  background: #FE5F1E;
+  color: #fff;
+  transition: all 0.2s ease-in-out;
+}
+
+section.cart {
+  background: #f5e7d0;
+}
+section.cart .amount {
+  color: #b23301;
+}
+
+.order_cart_img {
+  width: 6%;
+}
+
+.login {
+  background: #f5e7d0;
+}
+
+.forgot_password {
+  color: #b23301;
+}
+.forgot_password:hover {
+  color: #FE5F1E;
 }

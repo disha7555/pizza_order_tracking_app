@@ -6,13 +6,17 @@
   "scripts": {
     "dev": "nodemon server.js",
     "serve": "node server.js",
-    "watch": "npx mix watch", 
-    "production": "npx mix --production", 
+    "watch": "npx mix watch",
+    "production": "npx mix --production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "disha",
   "license": "ISC",
   "dependencies": {
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@mui/icons-material": "^6.0.0",
+    "@mui/material": "^6.0.0",
     "ejs": "^3.1.10",
     "express": "^4.19.2",
     "express-ejs-layouts": "^2.5.1",

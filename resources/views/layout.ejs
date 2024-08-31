@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script> -->
+
+    <!-- Tailwind CSS CDN -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" rel="stylesheet">
+ -->
+
+    <!-- Google Fonts -->
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+ -->
+
+    <!-- Tailwind CSS CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+
+    <!--font awesome icons-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="/css/app.css" />
+
+    <link rel="icon" href="/img/icon.png" type="image/png" />
+
+    <title>Realtinme Pizza App</title>
+  </head>
+  <body>
+    <nav class="container mx-auto flex items-center justify-between px-16 my-4">
+      <div class="px-2 py-2">
+        <img src="/img/brand1.jpeg" alt="no img" height="90vh" width="90vh" />
+      </div>
+      <div>
+        <ul class="flex items-center">
+          <li class="ml-6 items-center"><a href="#">Menu</a></li>
+          <li class="ml-6 items-center"><a href="#">Offers</a></li>
+          <li class="ml-6 items-center"><a href="/register">Register</a></li>
+          <li class="ml-6 items-center"><a href="/login">Login</a></li>
+          <!-- <li> <a href="/cart"><img src="/img/cart.jpeg" alt="no img" height="50vh" width="50vh"/></a></li> -->
+          <li class="ml-6 py-2 px-2 items-center">
+            <a href="/cart"><i class="fas fa-shopping-cart fa-2x cart-icon"></i></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <%- body %>
+    <script src="/js/app.js"></script>
+  </body>
+</html>
