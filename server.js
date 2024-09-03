@@ -42,12 +42,22 @@ app.use(flash());
 //set assets
 app.use(express.static('public'));
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+//global middleware
+app.use((req,res,next)=>{
+    res.locals.session=req.session
+    next();
+})
 
 //set template engine
 app.use(expressLayout);
 app.set('views',path.join(__dirname,'/resources/views'));
 //app.set('views',path.join(__dirname,'/resources/scss'));
 app.set('view engine','ejs');
+
+
 
 require('./routes/web')(app); //as it imports a function
 

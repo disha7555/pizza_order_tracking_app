@@ -7,17 +7,32 @@ body{
     font-family: 'Poppins', sans-serif;
     -webkit-font-smoothing:antialiased;
     color:$dark;
+    overflow-y: auto;
    
 }
 
 .cart-icon {
     color: $lightcreme;
     display: inline-block;
+    transition: color 0.3s;
   }
+
+  #cartCounter {
+    transition: color 0.3s;
+}
 nav li:last-child{
+  //background-color:$darkcreme2;
+  //background-color: #e1d3c5;
+ 
+  background-color:$darkcreme3;
+  transition: background-color 0.3s;
     &:hover{
         background-color: $darkcreme-hover;
+        #cartCounter {
+          color: white;
+        }
     }
+   
 }
 
   nav li a{
@@ -79,4 +94,14 @@ section.cart{
   &:hover{
     color: $primary;
   }
+}
+
+.items{
+  color:$primary-hover;
+}
+
+.empty-cart{
+  padding: 0;
+  margin: 0;
+  overflow-y: hidden;
 }

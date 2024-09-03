@@ -52,7 +52,8 @@
           <li class="ml-6 items-center"><a href="/register">Register</a></li>
           <li class="ml-6 items-center"><a href="/login">Login</a></li>
           <!-- <li> <a href="/cart"><img src="/img/cart.jpeg" alt="no img" height="50vh" width="50vh"/></a></li> -->
-          <li class="ml-6 py-2 px-2 items-center">
+          <li class="ml-6 py-2 px-2 flex items-center">
+            <span id="cartCounter" class="items font-bold"><%= session.cart? session.cart.totalQty : ''%></span>
             <a href="/cart"><i class="fas fa-shopping-cart fa-2x cart-icon"></i></a>
           </li>
         </ul>
