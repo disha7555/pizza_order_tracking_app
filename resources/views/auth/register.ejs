@@ -1,21 +1,21 @@
-<section class="login flex items-center justify-center py-16">
+<section class="login flex items-center justify-center py-14">
     <div class="bg-white p-12 shadow-lg max-w-md w-full">
         <h2 class="text-2xl font-bold mb-6 text-center">Register your account</h2>
-        <form>
+        <form action="/register" method="post">
             <div class="mb-4">
                 <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-                <input type="text" id="name" placeholder="Enter Your Name" class="mt-1 block w-full px-3 py-2 border border-gray-300  shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <input name="name" type="text" id="name" placeholder="Enter Your Name" class="mt-1 block w-full px-3 py-2 border border-gray-300  shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             </div>
             <div class="mb-4">
                 <label for="email" class="block text-sm font-medium text-gray-700">Email address</label>
-                <input type="email" id="email" placeholder="Enter Your Email Address" class="mt-1 block w-full px-3 py-2 border border-gray-300  shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <input name="email" type="email" id="email" placeholder="Enter Your Email Address" class="mt-1 block w-full px-3 py-2 border border-gray-300  shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             </div>
             <div class="mb-6">
                 <div class="flex justify-between items-center">
                     <label for="password" class="block text-sm font-medium text-gray-700" >Password</label>
                   
                 </div>
-                <input type="password" id="password" placeholder="Enter Your Password" class="mt-1 block w-full px-3 py-2 border border-gray-300  shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <input name="password" type="password" id="password" placeholder="Enter Your Password" class="mt-1 block w-full px-3 py-2 border border-gray-300  shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             </div>
             <div class="flex justify-between items-center mx-auto">
             <button type="submit" class="text-white py-2 text-center px-10 btn-primary">
