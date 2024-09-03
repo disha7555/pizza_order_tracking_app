@@ -1,3 +1,4 @@
+const User=require("../../models/user");
 function authController(){
     return{
         login(req,res){
