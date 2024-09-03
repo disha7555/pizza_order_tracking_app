@@ -1,4 +1,6 @@
 const User=require("../../models/user");
+
+
 function authController(){
     return{
         login(req,res){
@@ -9,6 +11,8 @@ function authController(){
         },
         postRegister(req,res){
             const {name,email,password} = req.body;
+            //validate req
+            if(!name || !email){}
             console.log(req.body)
         }
     };
