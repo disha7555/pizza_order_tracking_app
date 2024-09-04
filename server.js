@@ -10,6 +10,7 @@ const mongoose=require("mongoose");
 const session=require('express-session');
 const flash=require("express-flash");
 const MongoStore=require('connect-mongo');
+const passport=require("passport");
 // MongoStore(session);
 const { error } = require("console");
 
@@ -21,6 +22,9 @@ mongoose.connect(url)
 
 
 // let mongostore=new MongoStore({})
+
+
+
 
 //session config & session store
 app.use(session({
@@ -37,6 +41,13 @@ app.use(session({
     cookie: { maxAge: 1000 * 60 * 60 * 24}
 }));
 
+//passport config
+const passportInit=require('./app/config/passport');
+passportInit(passport);
+app.use(passport.initialize());
+app.use(passport.session());
+
+
 app.use(flash());
 
 //set assets
@@ -48,6 +59,9 @@ app.use(express.urlencoded({ extended: false }));
 //global middleware
 app.use((req,res,next)=>{
     res.locals.session=req.session
+    //res.locals.success_msg = req.flash('success');
+    //res.locals.error_msg = req.flash('error');
+    res.locals.user=req.user;
     next();
 })
 

@@ -49,8 +49,17 @@
         <ul class="flex items-center">
           <li class="ml-6 items-center"><a href="#">Menu</a></li>
           <li class="ml-6 items-center"><a href="#">Offers</a></li>
+          <% if(user) { %>
+          <li class="ml-6 items-center">
+            <form id="logout" action="/logout" method="post">
+              <a onclick="document.getElementById('logout').submit()" href="#">Logout</a>
+            </form>
+          </li>
+          <% } else { %>
           <li class="ml-6 items-center"><a href="/register">Register</a></li>
           <li class="ml-6 items-center"><a href="/login">Login</a></li>
+
+          <% } %>
           <!-- <li> <a href="/cart"><img src="/img/cart.jpeg" alt="no img" height="50vh" width="50vh"/></a></li> -->
           <li class="ml-6 py-2 px-2 flex items-center">
             <span id="cartCounter" class="items font-bold"><%= session.cart? session.cart.totalQty : ''%></span>
@@ -59,6 +68,12 @@
         </ul>
       </div>
     </nav>
+    <!-- Hidden flash message element -->
+    <!-- <div id="flash-messages" data-messages='<%= JSON.stringify({error: messages.error, success: messages.success}) %>' style="display: none;"></div> -->
+    <!-- <div id="flash-messages" data-messages='<%= JSON.stringify({error: messages.error, success: messages.success}) %>' style="display: block;"> -->
+      <!-- <p>Error: <%= messages.error %></p>
+      <p>Success: <%= messages.success %></p> -->
+  </div>
     <%- body %>
     <script src="/js/app.js"></script>
   </body>
