@@ -50,6 +50,14 @@ app.use(passport.session());
 
 app.use(flash());
 
+
+const flashMiddleware = (req, res, next) => {
+    res.locals.flash = req.flash();
+    next();
+};
+// Apply middleware globally
+app.use(flashMiddleware);
+
 //set assets
 app.use(express.static('public'));
 

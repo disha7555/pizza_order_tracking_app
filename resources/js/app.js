@@ -1,10 +1,10 @@
 import axios from 'axios';
 import toastr from 'toastr';  // Import Toastr for notification msg
 import 'toastr/build/toastr.min.css';  // Import Toastr CSS
-
+import initAdmin from './admin';
 // Configure Toastr to hide messages after 1 second
 toastr.options = {
-    "closeButton": true,
+    "closeButton": true,    
     "debug": false,
     "newestOnTop": false,
     "progressBar": false,
@@ -56,3 +56,47 @@ axios.post('/update-cart',pizza)
         });
     });
 //});
+
+
+
+
+
+
+// document.addEventListener('DOMContentLoaded', () => {
+//     // Extract flash messages
+//     const successMessage = '<%= flash.success %>';
+//     const errorMessage = '<%= flash.error %>';
+
+//       // Show success message if present
+//       if (successMessage) {
+//         toastr.success(successMessage);
+//     }
+
+//     // Show error message if present
+//     if (errorMessage) {
+//         toastr.error(errorMessage);
+//     }
+// });
+
+// Handle Toastr messages from flash
+document.addEventListener('DOMContentLoaded', () => {
+    // Extract flash messages from a hidden element in the layout
+    const flashMessages = document.getElementById('flash-messages');
+    if (flashMessages) {
+        const messages = JSON.parse(flashMessages.dataset.messages);
+
+        // Show success message if present
+        if (messages.success) {
+            toastr.success(messages.success);
+        }
+
+        // Show error message if present
+        if (messages.error) {
+            toastr.error(messages.error);
+        }
+    }
+});
+
+initAdmin();
+
+

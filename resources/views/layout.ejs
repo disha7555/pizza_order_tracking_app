@@ -43,11 +43,11 @@
   <body>
     <nav class="container mx-auto flex items-center justify-between px-16 my-4">
       <div class="px-2 py-2">
-        <img src="/img/brand1.jpeg" alt="no img" height="90vh" width="90vh" />
+        <a href="/"><img src="/img/brand1.jpeg" alt="no img" height="90vh" width="90vh" /></a>
       </div>
       <div>
         <ul class="flex items-center">
-          <li class="ml-6 items-center"><a href="#">Menu</a></li>
+          <li class="ml-6 items-center"><a href="/">Menu</a></li>
           <li class="ml-6 items-center"><a href="#">Offers</a></li>
           <% if(user) { %>
           <li class="ml-6 items-center">
@@ -74,6 +74,9 @@
       <!-- <p>Error: <%= messages.error %></p>
       <p>Success: <%= messages.success %></p> -->
   </div>
+  <!-- Hidden flash message element -->
+  <div id="flash-messages" data-messages='<%= JSON.stringify(flash) %>' style="display: none;"></div>
+
     <%- body %>
     <script src="/js/app.js"></script>
   </body>
