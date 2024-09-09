@@ -112,3 +112,127 @@ a.link{
     color:$primary;
   }
 }
+section.status{
+  background: $lightkhakhi2;
+  
+}
+.status-box ul{
+  margin-left: 94px;
+}
+//dots
+.status-box ul{
+  padding-left: 40px;
+}
+.status-box ul li span{
+position:relative;
+padding-left: 20px;
+
+}
+.status-box ul li span:after{
+  content:'';
+  position:absolute;
+  left:-10px;
+  top:30%;
+  background:#000;
+  width: 12px;
+  height:12px;
+  border-radius: 50%;
+  box-shadow: 0 1px 1px 10px $lightkhakhi2;
+
+}
+.status-box ul li span:before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900; /* This applies to solid icons */
+  position: absolute;
+  left: -70px; 
+  top: 2%; 
+  font-size: 1.666em;
+  color:inherit;
+  
+}
+
+/* 1st span - Order Placed */
+.status-box ul li:nth-child(1) span:before {
+  content: "\f46c"; /* Font Awesome check icon (replace with desired icon) */
+ 
+}
+
+/* 2nd span - Order Confirmation */
+.status-box ul li:nth-child(2) span:before {
+  content: "\f14a"; /* Font Awesome check-circle icon */
+}
+
+/* 3rd span - Order Preparation */
+.status-box ul li:nth-child(3) span:before {
+  content: "\f818"; /* Font Awesome pizza slice icon */
+}
+
+/* 4th span - Out for Delivery */
+.status-box ul li:nth-child(4) span:before {
+  content: "\f0d1"; /* Font Awesome truck icon */
+}
+
+/* 5th span - Order Completed */
+.status-box ul li:nth-child(5) span:before {
+  content: "\f560"; /* Font Awesome check icon */
+}
+//lines
+
+.status-box ul li {
+  position:relative;
+  padding-left: 20px;
+  }
+  .status-box ul li:after{
+    content:'';
+    position:absolute;
+    left:15px;
+    top:30%;
+    background:#000;
+    width: 2px;
+    height:calc(100% - 10px);
+   margin-top: 10px;
+  
+  }
+  
+.orderid_color{
+  background-color: $maroon;
+  color: white;
+}
+
+.status-box ul li span:nth-child(5) span:after{
+  box-shadow: 0 1px 1px 1px $lightkhakhi2;
+}
+.status-box ul li:last-child:after {
+  content: none; /* Removes the line for the last item */
+}
+
+//step completed lines
+.status-box li.step-completed:after{
+  background: gray;
+}
+
+//step completed dots
+.status-box ul li.step-completed span:after{
+  background: gray;
+}
+
+//step completed text
+.status-box ul li.step-completed span{
+  color: gray;
+}
+
+
+// //current lines
+// .status-box li.current:after{
+//   background: $primary;
+// }
+
+//current dots
+.status-box ul li.current span:after{
+  background:  $primary;
+}
+
+//current text
+.status-box ul li.current span{
+  color:  $primary;
+}

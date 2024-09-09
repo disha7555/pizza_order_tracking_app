@@ -43,18 +43,21 @@ function renderItems(items) {
                     <td class="border px-4 py-2">
                         <div class="inline-block relative w-64">
                             <form action="/admin/order/status" method="post">
+                            
                             <input type="hidden" name="orderId" value="${order._id}">
-                                <select name="status" onchange="this.form.submit()" class="block appearance-none w-full bg-white border border-gray-400 hover:norder-gray-500 px-4 py-2 py-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
-                                <option value="order_placed" ${order.status === 'order_placed' ? 'selected' : ''}>Placed</option>
+
+                                <select name="status" onchange="this.form.submit()" class="block w-full bg-white border border-gray-400" >
+                              <option value="order_placed" ${order.status === 'order_placed' ? 'selected' : ''}>Placed</option>
                                 <option value="confirmed" ${order.status === 'confirmed' ? 'selected' : ''}>Confirmed</option>
                                 <option value="prepared" ${order.status === 'prepared' ? 'selected' : ''}>Prepared</option>
                                 <option value="delivered" ${order.status === 'delivered' ? 'selected' : ''}>Delivered</option>
                                 <option value="completed" ${order.status === 'completed' ? 'selected' : ''}>Completed</option>
-
+                                
                                 </select>
+                                
                             </input>
                             </form>
-                            <div>for icon </div>
+                           
 
                         </div>
                       
