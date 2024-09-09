@@ -32,6 +32,7 @@
     "passport": "^0.7.0",
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
+    "socket.io": "^4.7.5",
     "toastr": "^2.1.4"
   },
   "devDependencies": {

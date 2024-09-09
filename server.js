@@ -11,6 +11,8 @@ const session=require('express-session');
 const flash=require("express-flash");
 const MongoStore=require('connect-mongo');
 const passport=require("passport");
+const EventEmitter = require('events');
+
 // MongoStore(session);
 const { error } = require("console");
 
@@ -25,6 +27,9 @@ mongoose.connect(url)
 
 
 
+//emitter
+const eventEmitter = new EventEmitter();
+app.set('eventEmitter',eventEmitter)
 
 //session config & session store
 app.use(session({
@@ -84,6 +89,24 @@ app.set('view engine','ejs');
 require('./routes/web')(app); //as it imports a function
 
 
-app.listen(PORT,()=>{
+const server=app.listen(PORT,()=>{
     console.log(`listening on port ${PORT}`);
 });
+
+//socket.io (server side)
+const io = require("socket.io")(server);
+io.on('connection',(socket)=>{
+        //we have to create different room for each order 
+        //room's name would be its order id
+
+        console.log(socket.id)
+        socket.on('join',(orderId)=>{
+            //orderId is our room no
+            console.log(orderId);
+            socket.join(orderId)
+        });
+})
+
+eventEmitter.on('orderUpdated',(data)=>{
+    io.to(`order_${data.id}`).emit('orderUpdated',data)
+})

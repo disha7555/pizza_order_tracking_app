@@ -63,6 +63,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _admin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./admin */ "./resources/js/admin.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_3__);
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 
  // Import Toastr for notification msg
  // Import Toastr CSS
@@ -140,16 +146,16 @@ document.addEventListener('DOMContentLoaded', function () {
   // Extract flash messages from a hidden element in the layout
   var flashMessages = document.getElementById('flash-messages');
   if (flashMessages) {
-    var messages = JSON.parse(flashMessages.dataset.messages);
+    var _messages = JSON.parse(flashMessages.dataset.messages);
 
     // Show success message if present
-    if (messages.success) {
-      toastr__WEBPACK_IMPORTED_MODULE_0___default().success(messages.success);
+    if (_messages.success) {
+      toastr__WEBPACK_IMPORTED_MODULE_0___default().success(_messages.success);
     }
 
     // Show error message if present
-    if (messages.error) {
-      toastr__WEBPACK_IMPORTED_MODULE_0___default().error(messages.error);
+    if (_messages.error) {
+      toastr__WEBPACK_IMPORTED_MODULE_0___default().error(_messages.error);
     }
   }
 });
@@ -182,6 +188,24 @@ function updateStatus(order) {
   });
 }
 updateStatus(order);
+
+//Socket (client side)
+var socket = io();
+//join
+//client sends msg named join to server with data i.e. order id which is unique
+//server of socket is in server.js
+if (order) {
+  socket.emit('join', "order_".concat(order._id));
+}
+//listening to the event 
+socket.on('orderUpdated', function (data) {
+  var updatedOrder = _objectSpread({}, order);
+  updatedOrder.updatedAt = moment__WEBPACK_IMPORTED_MODULE_3___default()().format();
+  updatedOrder.status = data.status;
+  updateStatus(updatedOrder);
+  toastr__WEBPACK_IMPORTED_MODULE_0___default().success(messages.success);
+  console.log(data);
+});
 
 /***/ }),
 

@@ -219,5 +219,13 @@ section.status {
 }
 
 .status-box ul li small {
-  margin-left: 61vh;
+  float: right;
+  margin-right: 23vh;
+  background-color: white;
+  color: black;
+  width: 17vh;
+  height: 4vh;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 500;
 }

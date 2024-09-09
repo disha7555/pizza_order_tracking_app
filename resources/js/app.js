@@ -128,3 +128,21 @@ function updateStatus(order) {
     })
 }
 updateStatus(order);
+
+//Socket (client side)
+let socket=io();
+//join
+//client sends msg named join to server with data i.e. order id which is unique
+//server of socket is in server.js
+if(order){
+    socket.emit('join',`order_${order._id}`)
+}
+//listening to the event 
+socket.on('orderUpdated',(data)=>{
+    const updatedOrder={...order};
+    updatedOrder.updatedAt=moment().format();
+    updatedOrder.status=data.status;
+    updateStatus(updatedOrder);
+    toastr.success(messages.success);
+    console.log(data)
+})
