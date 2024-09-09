@@ -56,14 +56,17 @@ function initAdmin() {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
 /* harmony import */ var toastr__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! toastr */ "./node_modules/toastr/toastr.js");
 /* harmony import */ var toastr__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(toastr__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var toastr_build_toastr_min_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! toastr/build/toastr.min.css */ "./node_modules/toastr/build/toastr.min.css");
 /* harmony import */ var _admin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./admin */ "./resources/js/admin.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_3__);
 
  // Import Toastr for notification msg
  // Import Toastr CSS
+
 
 // Configure Toastr to hide messages after 1 second
 (toastr__WEBPACK_IMPORTED_MODULE_0___default().options) = {
@@ -86,7 +89,7 @@ __webpack_require__.r(__webpack_exports__);
 };
 var cartCounter = document.querySelector('#cartCounter');
 function updateCart(pizza) {
-  axios__WEBPACK_IMPORTED_MODULE_3__["default"].post('/update-cart', pizza).then(function (res) {
+  axios__WEBPACK_IMPORTED_MODULE_4__["default"].post('/update-cart', pizza).then(function (res) {
     console.log(res);
     cartCounter.innerText = res.data.totalQty;
     toastr__WEBPACK_IMPORTED_MODULE_0___default().success('Item added to the cart');
@@ -151,6 +154,34 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 (0,_admin__WEBPACK_IMPORTED_MODULE_2__["default"])();
+
+//change order status
+var statuses = document.querySelectorAll('.status_line');
+var hiddenInput = document.querySelector('#hiddenInput');
+var order = hiddenInput ? hiddenInput.value : null;
+order = JSON.parse(order);
+var time = document.createElement('small');
+//console.log(order);
+function updateStatus(order) {
+  var stepcompleted = true;
+  // console.log(statuses);
+  statuses.forEach(function (status) {
+    var dataProp = status.dataset.status;
+    // console.log(status);
+    if (stepcompleted) {
+      status.classList.add('step-completed');
+    }
+    if (dataProp === order.status) {
+      stepcompleted = false;
+      time.innerText = moment__WEBPACK_IMPORTED_MODULE_3___default()(order.updatedAt).format('hh:mm A');
+      status.appendChild(time);
+      if (status.nextElementSibling) {
+        status.nextElementSibling.classList.add('current');
+      }
+    }
+  });
+}
+updateStatus(order);
 
 /***/ }),
 

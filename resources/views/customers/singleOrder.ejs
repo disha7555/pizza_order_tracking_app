@@ -4,14 +4,15 @@
             <div class="flex items-center justify-between mb-12 ml-16 pt-5">
                 <h1 class="text-xl font-bold">Track your Order</h1>
                 <h6 class="py-1 orderid_color px-4 text-xs mr-16"><%= order._id %></h6>
+                <input id="hiddenInput" type="hidden" value="<%= JSON.stringify(order) %>">
 
             </div>
             <ul class="pb-8">
-                <li class="status_line text-xl pb-16"><span>Order placed</span></li>
-                <li class="status_line text-xl pb-16"><span>Order confirmed</span></li>
-                <li class="status_line text-xl pb-16"><span>Order prepared</span></li>
-                <li class="status_line text-xl pb-16"><span>Out for delivery</span></li>
-                <li class="status_line text-xl"><span>Order completed</span></li>
+                <li class="status_line text-xl pb-16" data-status="order_placed"><span>Order placed</span></li>
+                <li class="status_line text-xl pb-16" data-status="confirmed"><span>Order confirmed</span></li>
+                <li class="status_line text-xl pb-16" data-status="prepared"><span>Order prepared</span></li>
+                <li class="status_line text-xl pb-16" data-status="delivered"><span>Out for delivery</span></li>
+                <li class="status_line text-xl" data-status="completed"><span>Order completed</span></li>
             </ul>
         </div>
     </div>

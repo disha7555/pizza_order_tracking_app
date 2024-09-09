@@ -217,3 +217,7 @@ section.status {
 .status-box ul li.current span {
   color: #FE5F1E;
 }
+
+.status-box ul li small {
+  margin-left: 61vh;
+}

@@ -2,6 +2,7 @@ import axios from 'axios';
 import toastr from 'toastr';  // Import Toastr for notification msg
 import 'toastr/build/toastr.min.css';  // Import Toastr CSS
 import initAdmin from './admin';
+import moment from 'moment';
 // Configure Toastr to hide messages after 1 second
 toastr.options = {
     "closeButton": true,    
@@ -100,3 +101,30 @@ document.addEventListener('DOMContentLoaded', () => {
 initAdmin();
 
 
+//change order status
+let statuses=document.querySelectorAll('.status_line');
+let hiddenInput=document.querySelector('#hiddenInput');
+let order=hiddenInput?hiddenInput.value:null;
+order=JSON.parse(order);
+
+let time=document.createElement('small');
+//console.log(order);
+function updateStatus(order) {
+    let stepcompleted=true;
+   // console.log(statuses);
+    statuses.forEach((status)=>{
+        let dataProp=status.dataset.status;
+       // console.log(status);
+        if(stepcompleted){
+            status.classList.add('step-completed');
+        }
+        if(dataProp===order.status){
+            stepcompleted=false;
+            time.innerText=moment(order.updatedAt).format('hh:mm A');
+            status.appendChild(time);
+            if( status.nextElementSibling){
+            status.nextElementSibling.classList.add('current');
+        }}
+    })
+}
+updateStatus(order);

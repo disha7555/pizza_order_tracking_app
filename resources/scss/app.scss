@@ -236,3 +236,8 @@ padding-left: 20px;
 .status-box ul li.current span{
   color:  $primary;
 }
+
+.status-box ul li small{
+  // float: right;
+  margin-left: 61vh
+}
