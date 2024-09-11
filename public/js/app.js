@@ -160,7 +160,6 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 (0,_admin__WEBPACK_IMPORTED_MODULE_2__["default"])();
-document.addEventListener('DOMContentLoaded', function () {});
 
 //change order status
 var statuses = document.querySelectorAll('.status_line');
