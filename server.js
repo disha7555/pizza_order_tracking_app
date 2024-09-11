@@ -101,7 +101,7 @@ io.on('connection',(socket)=>{
 
         console.log(socket.id)
         socket.on('join',(orderId)=>{
-            //orderId is our room no
+            //orderId is our room no    
             console.log(orderId);
             socket.join(orderId)
         });

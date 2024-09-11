@@ -146,20 +146,21 @@ document.addEventListener('DOMContentLoaded', function () {
   // Extract flash messages from a hidden element in the layout
   var flashMessages = document.getElementById('flash-messages');
   if (flashMessages) {
-    var _messages = JSON.parse(flashMessages.dataset.messages);
+    var messages = JSON.parse(flashMessages.dataset.messages);
 
     // Show success message if present
-    if (_messages.success) {
-      toastr__WEBPACK_IMPORTED_MODULE_0___default().success(_messages.success);
+    if (messages.success) {
+      toastr__WEBPACK_IMPORTED_MODULE_0___default().success(messages.success);
     }
 
     // Show error message if present
-    if (_messages.error) {
-      toastr__WEBPACK_IMPORTED_MODULE_0___default().error(_messages.error);
+    if (messages.error) {
+      toastr__WEBPACK_IMPORTED_MODULE_0___default().error(messages.error);
     }
   }
 });
 (0,_admin__WEBPACK_IMPORTED_MODULE_2__["default"])();
+document.addEventListener('DOMContentLoaded', function () {});
 
 //change order status
 var statuses = document.querySelectorAll('.status_line');
@@ -167,10 +168,23 @@ var hiddenInput = document.querySelector('#hiddenInput');
 var order = hiddenInput ? hiddenInput.value : null;
 order = JSON.parse(order);
 var time = document.createElement('small');
+
+//perfect with refresh//
 //console.log(order);
 function updateStatus(order) {
   var stepcompleted = true;
+  statuses.forEach(function (status) {
+    var dataProp1 = status.dataset.status;
+    if (dataProp1 === 'order_placed') {
+      status.classList.add('current');
+    }
+  });
+  // const defaultStatusElement = document.querySelector('.status_line[data-status="order_placed"]');
+  // if (order.status === 'order_placed') {
+  //     defaultStatusElement.classList.add('current');
+  // }
   // console.log(statuses);
+  var defaultclass = document.getElementById('order_placed');
   statuses.forEach(function (status) {
     var dataProp = status.dataset.status;
     // console.log(status);
@@ -179,15 +193,224 @@ function updateStatus(order) {
     }
     if (dataProp === order.status) {
       stepcompleted = false;
+      defaultclass.classList.remove('current');
       time.innerText = moment__WEBPACK_IMPORTED_MODULE_3___default()(order.updatedAt).format('hh:mm A');
       status.appendChild(time);
+      status.classList.add('current');
+      if (status.previousElementSibling) {
+        status.previousElementSibling.classList.add('step-completed');
+        status.previousElementSibling.classList.remove('current');
+      }
       if (status.nextElementSibling) {
-        status.nextElementSibling.classList.add('current');
+        status.nextElementSibling.classList.add('');
       }
     }
   });
+  setTimeout(function () {
+    statuses.forEach(function (status) {
+      return status.offsetHeight;
+    }); // Trigger reflow
+  }, 100);
 }
+
+// // Initialize the statuses
+// let statuses = document.querySelectorAll('.status_line');
+// let hiddenInput = document.querySelector('#hiddenInput');
+// let order = hiddenInput ? hiddenInput.value : null;
+// order = JSON.parse(order);
+
+// let time = document.createElement('small');
+
+// // Update status function
+// function updateStatus(order) {
+//     let stepcompleted = true;
+
+//     // const defaultStatusElement = document.querySelector('.status_line[data-status="order_placed"]');
+//     // console.log(defaultStatusElement);
+//     statuses.forEach((status) => {
+//         let dataProp = status.dataset.status;
+
+//         // Apply step-completed class to all previous steps
+//         if (stepcompleted) {
+//             status.classList.add('step-completed');
+//         }
+
+//         // Check if the current step matches the order status
+//         if (dataProp === order.status) {
+//             stepcompleted = false;
+
+//             // Remove 'current' from order_placed if it's not the current status
+//             if (order.status !== 'order_placed') {
+//                 defaultStatusElement.classList.remove('current');
+//             }
+
+//             // Set 'current' class on the current status
+//             status.classList.add('current');
+//             time.innerText = moment(order.updatedAt).format('hh:mm A');
+//             status.appendChild(time);
+
+//             // Mark the previous status as step-completed and remove 'current'
+//             if (status.previousElementSibling) {
+//                 status.previousElementSibling.classList.add('step-completed');
+//                 status.previousElementSibling.classList.remove('current');
+//             }
+
+//         } else {
+//             // Remove 'current' class for all other statuses
+//             status.classList.remove('current');
+//         }
+//     });
+
+//     // Default behavior: If order status is 'order_placed', mark it as 'current'
+//     if (order.status === 'order_placed') {
+//         defaultStatusElement.classList.add('current');
+//     }
+
+//     // Trigger reflow to ensure styles are applied
+//     setTimeout(() => {
+//         statuses.forEach((status) => status.offsetHeight); // Trigger reflow
+//     }, 100);
+// }
+
+// function updateStatus(order) {
+//     let stepcompleted = true;
+//     statuses.forEach((status) => {
+//         let dataProp = status.dataset.status;
+//         if (stepcompleted) {
+//             status.classList.add('step-completed');
+//         }
+//         if (dataProp === order.status) {
+//             stepcompleted = false;
+//             time.innerText = moment(order.updatedAt).format('hh:mm A');
+//             status.appendChild(time);
+//             status.classList.add('current');
+//         }
+//     });
+//     // Force a re-render after the status update
+//     setTimeout(() => {
+//         statuses.forEach((status) => status.offsetHeight);  // Trigger reflow
+//     }, 100);
+// }
+
+// function updateStatus(order) {
+//     let stepcompleted = true;
+//     statuses.forEach((status) => {
+//         let dataProp = status.dataset.status;
+
+//         if (stepcompleted) {
+//             status.classList.add('step-completed');
+//         }
+
+//         if (dataProp === order.status) {
+//             stepcompleted = false; // Stop adding step-completed class
+//             time.innerText = moment(order.updatedAt).format('hh:mm A');
+//             status.appendChild(time);
+//             status.classList.add('current'); // Ensure only the current status gets this class
+
+//             // Ensure only the current and previous statuses are marked
+//             if (status.nextElementSibling) {
+//                 status.nextElementSibling.classList.remove('current');
+//             }
+//         } else {
+//             status.classList.remove('current');
+//         }
+//     });
+// }
+
+// function updateStatus(order) {
+//     let stepCompleted = false; // Track if previous steps should be completed
+
+//     statuses.forEach((status) => {
+//         let dataProp = status.dataset.status;
+
+//         // Apply the step-completed class to previous steps
+//         if (stepCompleted) {
+//             status.classList.add('step-completed');
+//         }
+
+//         // If this status matches the current order status
+//         if (dataProp === order.status) {
+//             stepCompleted = true; // Previous statuses should be completed
+
+//             // Update the time
+//             time.innerText = moment(order.updatedAt).format('hh:mm A');
+//             status.appendChild(time);
+
+//             // Apply the current class to the current status
+//             status.classList.add('current');
+//         }
+//     });
+
+//     // Apply step-completed class to all statuses before the current one
+//     statuses.forEach((status) => {
+//         if (status.classList.contains('current')) {
+//             // Continue applying step-completed to statuses before the current one
+//             status.previousElementSibling?.classList.add('step-completed');
+//         }
+//     });
+// }
+
+// function updateStatus(order) {
+//     let stepcompleted = true;
+
+//     statuses.forEach((status) => {
+//         let dataProp = status.dataset.status;
+
+//         // Check if this status is the current status
+//         if (dataProp === order.status) {
+//             stepcompleted = false;  // This status is now current
+//             status.classList.add('current');
+//             time.innerText = moment(order.updatedAt).format('hh:mm A');
+//             status.appendChild(time);
+//         } else if (stepcompleted) {
+//             // If stepcompleted is true, all previous statuses should have step-completed class
+//             status.classList.add('step-completed');
+//         } else {
+//             // Once we find the current status, all subsequent statuses should not be step-completed
+//             status.classList.remove('step-completed');
+//         }
+//     });
+// }
+
+// Apply default current class to order_placed if no status is set yet
+// document.addEventListener('DOMContentLoaded', () => {
+//     if (!order.status || order.status === 'order_placed') {
+//         statuses.forEach((status) => {
+//             if (status.dataset.status === 'order_placed') {
+//                 status.classList.add('current');
+//             } else {
+//                 status.classList.remove('current', 'step-completed');
+//             }
+//         });
+//     }
+// });
+
+// function updateStatus(order) {
+//     const statusLines = document.querySelectorAll('.status_line');
+//     const currentStatus = order.status; // Assuming the order object has a 'status' property
+
+//     statusLines.forEach((statusLine) => {
+//         const status = statusLine.getAttribute('data-status');
+
+//         if (status === currentStatus) {
+//             statusLine.classList.add('current');
+//             statusLine.classList.remove('step-completed');
+//         } else if (statusLines[Array.from(statusLines).indexOf(statusLine) - 1] &&
+//                    statusLines[Array.from(statusLines).indexOf(statusLine) - 1].getAttribute('data-status') === currentStatus) {
+//             // Apply 'step-completed' class to previous statuses
+//             statusLine.classList.add('step-completed');
+//             statusLine.classList.remove('current');
+//         } else {
+//             statusLine.classList.remove('current');
+//             statusLine.classList.remove('step-completed');
+//         }
+//     });
+// }
+
+// Initial load
 updateStatus(order);
+
+//updateStatus(order);
 
 //Socket (client side)
 var socket = io();
@@ -198,13 +421,26 @@ if (order) {
   socket.emit('join', "order_".concat(order._id));
 }
 //listening to the event 
-socket.on('orderUpdated', function (data) {
-  var updatedOrder = _objectSpread({}, order);
-  updatedOrder.updatedAt = moment__WEBPACK_IMPORTED_MODULE_3___default()().format();
-  updatedOrder.status = data.status;
-  updateStatus(updatedOrder);
-  toastr__WEBPACK_IMPORTED_MODULE_0___default().success(messages.success);
-  console.log(data);
+
+// document.addEventListener('DOMContentLoaded', () => {
+//     socket.on('orderUpdated',(data)=>{
+//         const updatedOrder={...order};
+//         updatedOrder.updatedAt=moment().format();
+//         updatedOrder.status=data.status;
+//         updateStatus(updatedOrder);
+//         toastr.success("Order status updated");
+//         console.log(data)
+//     })
+// });
+
+document.addEventListener('DOMContentLoaded', function () {
+  socket.on('orderUpdated', function (data) {
+    var updatedOrder = _objectSpread({}, order);
+    updatedOrder.updatedAt = moment__WEBPACK_IMPORTED_MODULE_3___default()().format();
+    updatedOrder.status = data.status;
+    updateStatus(updatedOrder);
+    toastr__WEBPACK_IMPORTED_MODULE_0___default().success("Order status updated");
+  });
 });
 
 /***/ }),
