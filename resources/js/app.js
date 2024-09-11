@@ -59,10 +59,6 @@ axios.post('/update-cart',pizza)
 //});
 
 
-
-
-
-
 // document.addEventListener('DOMContentLoaded', () => {
 //     // Extract flash messages
 //     const successMessage = '<%= flash.success %>';
@@ -98,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-initAdmin();
+
 
 
 //change order status
@@ -112,6 +108,13 @@ let time=document.createElement('small');
 //perfect with refresh//
 //console.log(order);
 function updateStatus(order) {
+
+    //for reverse order status changing for mistake of admin of choosing the next status by mistake 
+    statuses.forEach((status)=>{
+        status.classList.remove('step-completed')
+        status.classList.remove('current')
+    });
+
     let stepcompleted=true;
     statuses.forEach((status) => {
         let dataProp1 = status.dataset.status;
@@ -146,7 +149,6 @@ function updateStatus(order) {
             if( status.nextElementSibling){
             status.nextElementSibling.classList.add('');
         }
-       
 
         }
     });
@@ -220,87 +222,6 @@ function updateStatus(order) {
 // }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // function updateStatus(order) {
 //     let stepcompleted = true;
 //     statuses.forEach((status) => {
@@ -320,29 +241,6 @@ function updateStatus(order) {
 //         statuses.forEach((status) => status.offsetHeight);  // Trigger reflow
 //     }, 100);
 // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -482,19 +380,28 @@ function updateStatus(order) {
 
 // Initial load
 updateStatus(order);
-
-
-
 //updateStatus(order);
 
-//Socket (client side)
-let socket=io();
-//join
-//client sends msg named join to server with data i.e. order id which is unique
-//server of socket is in server.js
-if(order){
-    socket.emit('join',`order_${order._id}`)
-}
+let socket;
+
+document.addEventListener('DOMContentLoaded', () => {
+    //Socket (client side)
+    socket=io();
+    initAdmin(socket);
+    //join
+    //client sends msg named join to server with data i.e. order id which is unique
+    //server of socket is in server.js
+    if(order){
+        socket.emit('join',`order_${order._id}`)
+    }
+    
+    let adminAreaPath=window.location.pathname;
+    console.log(adminAreaPath);
+    if(adminAreaPath.includes('admin')){
+        socket.emit('join','adminRoom')
+    }
+    });
+
 //listening to the event 
 
 // document.addEventListener('DOMContentLoaded', () => {

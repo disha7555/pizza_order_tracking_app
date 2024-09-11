@@ -1,6 +1,8 @@
 import moment from "moment";
 import axios from "axios";
-function initAdmin() {
+import toastr from 'toastr';
+import { Socket } from "socket.io";
+function initAdmin(socket) {
 
     const orderTableBody=document.querySelector('#orderTableBody');
     let orders=[];
@@ -11,6 +13,13 @@ function initAdmin() {
         }
     }).then(res => {
         orders = res.data;
+
+        // Check if this is an array or something else
+    // Ensure res.data is an array
+    //orders = Array.isArray(res.data) ? res.data : [];
+    //orders = Array.isArray(res.data) ? res.data : Object.values(res.data);
+
+
         markup = generateMarkup(orders);
         orderTableBody.innerHTML = markup;
     }).catch(err => { console.log(err) });
@@ -25,7 +34,9 @@ function renderItems(items) {
     
 }
 
+
         function generateMarkup(orders){
+
             return orders.map(order=>{
                 return `
                 <tr>
@@ -68,6 +79,16 @@ function renderItems(items) {
                 </tr>
             `}).join('')
         }
-    
+        //socket
+       // let socket=io();
+
+        socket.on('orderPlaced',(order)=>{
+            toastr.success("New order updated");
+            orders.unshift(order);
+            //orderTableBody.innerHTML='';
+            orderTableBody.innerHTML=generateMarkup(orders);
+        })
+   
+
 }
 export default initAdmin;

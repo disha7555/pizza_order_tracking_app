@@ -29,6 +29,7 @@ mongoose.connect(url)
 
 //emitter
 const eventEmitter = new EventEmitter();
+eventEmitter.setMaxListeners(20)    
 app.set('eventEmitter',eventEmitter)
 
 //session config & session store
@@ -105,8 +106,27 @@ io.on('connection',(socket)=>{
             console.log(orderId);
             socket.join(orderId)
         });
+
+
+        // eventEmitter.on('orderUpdated',(data)=>{
+        //     io.to(`order_${data.id}`).emit('orderUpdated',data)
+        // })
+        
+        // eventEmitter.on('orderPlaced',(data)=>{
+        //     io.to('adminRooom').emit('orderPlaced',data)
+        // })
+
+         // Ensure single listener for orderUpdated event
+    eventEmitter.removeAllListeners('orderUpdated');
+    eventEmitter.on('orderUpdated', (data) => {
+        io.to(`order_${data.id}`).emit('orderUpdated', data);
+    });
+
+    // Ensure single listener for orderPlaced event
+    eventEmitter.removeAllListeners('orderPlaced');
+    eventEmitter.on('orderPlaced', (data) => {
+        io.to('adminRoom').emit('orderPlaced', data);
+    });
 })
 
-eventEmitter.on('orderUpdated',(data)=>{
-    io.to(`order_${data.id}`).emit('orderUpdated',data)
-})
+
