@@ -1,6 +1,6 @@
 <section class="cart py-1">
   <% if(session.cart) {%>
-  <div class="order container mx-auto w-1/2">
+  <div class="order container mx-auto w-full lg:w-2/3">
     <div class="flex items-center border-b border-gray-400 pb-4 pt-5">
       <img src="/img/security.png" alt="no img" class="order_cart_img" />
       <h1 class="font-bold ml-4 text-2xl">Order Summary</h1>
@@ -12,13 +12,27 @@
       <div class="flex items-center my-5">
         <img src="/img/<%= pizza.item.image %>" class="w-24" alt="no img" />
         <div class="ml-4 flex-1">
-          <h1><%= pizza.item.name %></h1>
-          <span><%= pizza.item.size %></span>
+          <h1 class="text-xl md:text-xl"><%= pizza.item.name %></h1>
+          <span class="size py-1 px-4 uppercase text-sm md:text-lg"><%= pizza.item.size %></span>
         </div>
-        <span class="flex-1"><%= pizza.qty %></span>
-        <span class="font-bold text-lg"
-          ><%= pizza.item.price * pizza.qty %></span
-        >
+       
+        <span class="flex-1 font-bold "><%= pizza.item.price * pizza.qty %></span>
+        <span class="font-bold text-lg mr-2"><%= pizza.qty %></span>
+        <form action="/qtyinc" method="POST">
+          <input type="hidden" name="_id" value="<%= pizza.item._id %>">
+          <button type="submit" class="inline-block btn-primary px-2 py-1 mx-2 text-white">+</button>
+        </form>
+        
+        <form action="/qtydec" method="POST">
+          <input type="hidden" name="_id" value="<%= pizza.item._id %>">
+          <button type="submit" class="inline-block btn-primary px-2 py-1 mx-2 text-white">-</button>
+        </form>
+
+        <form action="/remove" method="POST">
+          <input type="hidden" name="_id" value="<%= pizza.item._id %>">
+          <button type="submit" class="inline-block btn-primary px-2 py-1 mx-2 text-white">Remove</button>
+        </form>
+
       </div>
       <% } %>
     </div>
@@ -27,8 +41,12 @@
       <div>
         <span class="text-lg font-bold">Total Amount:</span>
         <span class="amount text-2xl font-bold ml-2"
-          ><%= session.cart.totalPrice %></span
-        >
+          ><%= session.cart.totalPrice %></span>
+      </div>
+      <div>
+        <span class="text-lg font-bold">Total Quantity:</span>
+        <span class="amount text-2xl font-bold ml-2"
+          ><%= session.cart.totalQty %></span>
       </div>
       <% if(user) { %>
       <div>

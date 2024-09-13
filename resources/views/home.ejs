@@ -2,36 +2,36 @@
     <div class="container mx-auto flex items-center justify-between px-16 my-4">
         <div>
             <h6 class="text-3xl py-2"><em>Are You hungry?</em></h6>
-            <h1 class="text-6xl font-bold py-2">Don't Wait !</h1>
+            <h1 class="text-6xl font-bold py-2 md:text-3xl sm:text-3xl lg:text-4xl xl:text-6xl 2xl:text-6xl">Don't Wait !</h1>
             <button class="px-6 py-2 text-white font-bold mt-4 btn-primary">Order now</button>
         </div>
         <div>
-           <img src="/img/pizza1.jpeg" alt="no img" class="hw-500vh">
+           <img src="/img/pizza1.jpeg" alt="no img" class="h-96 w-96 sm:h-40 sm:w-40 md:h-72 md:w-72 lg:h-80 lg:w-80 xl:h-96 xl:w-96 2xl:h-96 2xl:w-96">
         </div>
     </div>
 </section>
-<section class="menu container mx-auto px-16 my-4">
-    <h1 class="text-xl font-bold mb-8">All pizzas</h1>
+<section class="mx-auto items-center my-4">
+    <h1 class="text-2xl font-bold mb-8 ml-6">All pizzas</h1>
     <!--wrapper for menu items-->
-    <div class="grid grid-cols-4 gap-x-8 gap-y-10">
+    <div class="grid mx-auto items-center justify-center sm:grid-cols-1 sm:items-center sm:justify-center md:place-items-center md:items-center md:justify-center  md:grid-cols-1 lg:grid-cols-2  xl:grid-cols-3 2xl:grid-cols-4 gap-x-8 gap-y-10">
 
         
         <% pizzas.forEach(function(pizza){ %>
 
             
-        <div class="w-64">
+        <div class="w-full md:w-64">
 
-            <img class="h-40 mb-4 mx-auto" src="/img/<%= pizza.image %>" alt="no img"/>
+            <img class="h-96 w-96 md:h-40 md:w-40 mb-4 mx-auto" src="/img/<%= pizza.image %>" alt="no img"/>
 
             <div class="text-center">
-                <h2 class="mb-4 text-lg"><%= pizza.name %></h2>
-                <h2 class="mb-4 text-sm"><%= pizza.description %></h2>
-                <span class="size py-1 px-4 uppercase text-xs"><%= pizza.size %></span>
+                <h2 class="mb-4 text-xl md:text-xl"><%= pizza.name %></h2>
+                <h2 class="mb-4 text-lg md:text-lg"><%= pizza.description %></h2>
+                <span class="size py-1 px-4 uppercase text-sm md:text-lg"><%= pizza.size %></span>
                 <div class="flex items-center justify-around mt-6">
-                    <span class="font-bold text-lg">₹<%= pizza.price %></span>
+                    <span class="font-bold text-lg md:text-xl">₹<%= pizza.price %></span>
                     <button data-pizza="<%=JSON.stringify(pizza) %>" class="add-to-cart py-1 px-6 flex items-center font-bold">
                         <span>+</span>
-                        <span class="ml-4">Add</span>
+                        <span class="ml-4 text-lg md:text-xl">Add</span>
                     </button>
                 </div>
             </div>
@@ -41,4 +41,4 @@
 
        <% }) %>
     </div>
-</section>
+</section> 

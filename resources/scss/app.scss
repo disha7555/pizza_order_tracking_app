@@ -1,4 +1,5 @@
 // @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900;700&display=swap');
+
 @import './variables';
 
 // $primary:blue;
@@ -9,6 +10,57 @@ body{
     color:$dark;
     overflow-y: auto;
    
+}
+.logo-icon{
+  height:"10px";
+  width:"10px";
+}
+.logo-icon-sm{
+  height: 15px;
+  width:15px;
+}
+
+// .custom-small {
+
+//   @media (max-width: 480px) {
+//     @apply text-2xl; /* Apply custom font size on small screens */
+//   }
+// }
+
+// @media (max-width: 639px) { /* sm and below */
+//   .custom-grid-cols-1 {
+//     grid-template-columns: repeat(1, minmax(0, 1fr));
+//   }
+// }
+
+@media (max-width: 639px) {
+  .custom-grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 640px) and (max-width: 767px) {
+  .custom-grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .custom-grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .custom-grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1280px) {
+  .custom-grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 }
 
 .cart-icon {
@@ -153,28 +205,28 @@ padding-left: 20px;
 
 /* 1st span - Order Placed */
 .status-box ul li:nth-child(1) span:before {
-  content: "\f46c"; /* Font Awesome check icon (replace with desired icon) */
+  content: "\f46c"; 
  
 }
 
 /* 2nd span - Order Confirmation */
 .status-box ul li:nth-child(2) span:before {
-  content: "\f14a"; /* Font Awesome check-circle icon */
+  content: "\f14a"; 
 }
 
 /* 3rd span - Order Preparation */
 .status-box ul li:nth-child(3) span:before {
-  content: "\f818"; /* Font Awesome pizza slice icon */
+  content: "\f818"; 
 }
 
 /* 4th span - Out for Delivery */
 .status-box ul li:nth-child(4) span:before {
-  content: "\f0d1"; /* Font Awesome truck icon */
+  content: "\f0d1"; 
 }
 
 /* 5th span - Order Completed */
 .status-box ul li:nth-child(5) span:before {
-  content: "\f560"; /* Font Awesome check icon */
+  content: "\f560"; 
 }
 //lines
 

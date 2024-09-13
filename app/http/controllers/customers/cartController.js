@@ -41,6 +41,80 @@ function cartController(){
             
             // console.log(req.body);
             return res.json({totalQty:req.session.cart.totalQty});
+        },
+        qtyinc(req,res){
+            let cart=req.session.cart;
+            if (!cart.items[req.body._id]) {
+                return res.status(400).send('Item not found in cart');
+            }
+            cart.items[req.body._id].qty=cart.items[req.body._id].qty+1;
+            cart.totalQty=cart.totalQty+1;
+            cart.totalPrice=cart.totalPrice + cart.items[req.body._id].item.price;
+            return res.redirect('/cart');
+
+
+        },
+        // qtydec(req,res){
+        //     let cart=req.session.cart;
+        //     if (!cart.items[req.body._id]) {
+        //         return res.status(400).send('Item not found in cart');
+        //     }
+        //     cart.items[req.body._id].qty=cart.items[req.body._id].qty-1;
+        //     cart.totalQty=cart.totalQty-1;
+        //     cart.totalPrice=cart.totalPrice - cart.items[req.body._id].item.price;
+        //     if (cart.totalQty === 0) {
+        //         req.session.cart = null;
+                
+        //     }
+        //     else{
+        
+        //     return res.redirect('/cart');
+        // }
+        // },
+        qtydec(req, res) {
+            let cart = req.session.cart;
+            if (!cart.items[req.body._id]) {
+                return res.status(400).send('Item not found in cart');
+            }
+        
+            let item = cart.items[req.body._id];
+            
+            if (item.qty > 1) {
+                // Decrease quantity and update total values
+                item.qty -= 1;
+                cart.totalQty -= 1;
+                cart.totalPrice -= item.item.price;
+            } else {
+                // Remove item if quantity is 1
+                delete cart.items[req.body._id];
+                cart.totalQty -= 1;
+                cart.totalPrice -= item.item.price;
+        
+                if (cart.totalQty === 0) {
+                    req.session.cart = null;
+                }
+            }
+        
+            return res.redirect('/cart');
+        },
+        
+        remove(req,res){
+            let cart=req.session.cart;
+            if (!cart.items[req.body._id]) {
+                return res.status(400).send('Item not found in cart');
+            }
+            let selecteditem=cart.items[req.body._id];
+            delete cart.items[req.body._id];
+            cart.totalQty= cart.totalQty-selecteditem.qty;
+            cart.totalPrice=cart.totalPrice - (selecteditem.qty*selecteditem.item.price);
+            if (cart.totalQty === 0) {
+                req.session.cart = null;
+                
+            }
+            
+        
+            return res.redirect('/cart');
+        
         }
     };
 }

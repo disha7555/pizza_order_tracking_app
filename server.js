@@ -17,15 +17,10 @@ const EventEmitter = require('events');
 const { error } = require("console");
 
 //database connection
-const url="mongodb+srv://disha:DKMongo%407555@cluster0.ssh4wdp.mongodb.net/pizza?retryWrites=true&w=majority&appName=Cluster0";
+const url=process.env.MONGO_CONNECTION_URL;
 mongoose.connect(url)
 .then(()=>console.log("connected to database"))
 .catch((error)=>console.error("databse connection failed",error));
-
-
-// let mongostore=new MongoStore({})
-
-
 
 //emitter
 const eventEmitter = new EventEmitter();
@@ -43,7 +38,6 @@ app.use(session({
         ttl: 14 * 24 * 60 * 60, 
         autoRemove: 'native'   
     }),
-    //store: new MongoStore({ url: 'mongodb://localhost/session-db' })
     cookie: { maxAge: 1000 * 60 * 60 * 24}
 }));
 
@@ -53,9 +47,7 @@ passportInit(passport);
 app.use(passport.initialize());
 app.use(passport.session());
 
-
 app.use(flash());
-
 
 const flashMiddleware = (req, res, next) => {
     res.locals.flash = req.flash();
@@ -71,24 +63,21 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 //global middleware
-app.use((req,res,next)=>{
-    res.locals.session=req.session
-    //res.locals.success_msg = req.flash('success');
-    //res.locals.error_msg = req.flash('error');
-    res.locals.user=req.user;
+app.use((req, res, next) => {
+    res.locals.session = req.session;
+    res.locals.user = req.user;
     next();
-})
-
+  });
+  
 //set template engine
 app.use(expressLayout);
 app.set('views',path.join(__dirname,'/resources/views'));
-//app.set('views',path.join(__dirname,'/resources/scss'));
 app.set('view engine','ejs');
 
-
-
-require('./routes/web')(app); //as it imports a function
-
+require('./routes/web')(app); 
+app.use((req,res)=>{
+    res.status(404).render('errors/404')
+})
 
 const server=app.listen(PORT,()=>{
     console.log(`listening on port ${PORT}`);
@@ -106,16 +95,7 @@ io.on('connection',(socket)=>{
             console.log(orderId);
             socket.join(orderId)
         });
-
-
-        // eventEmitter.on('orderUpdated',(data)=>{
-        //     io.to(`order_${data.id}`).emit('orderUpdated',data)
-        // })
         
-        // eventEmitter.on('orderPlaced',(data)=>{
-        //     io.to('adminRooom').emit('orderPlaced',data)
-        // })
-
          // Ensure single listener for orderUpdated event
     eventEmitter.removeAllListeners('orderUpdated');
     eventEmitter.on('orderUpdated', (data) => {
