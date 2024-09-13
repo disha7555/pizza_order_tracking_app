@@ -4,7 +4,7 @@ const express = require("express");
 const app=express();
 const ejs=require("ejs");
 const expressLayout=require('express-ejs-layouts');
-const PORT=process.env.PORT||3301;
+const PORT=process.env.PORT;
 const path=require('path');
 const mongoose=require("mongoose");
 const session=require('express-session');
@@ -95,7 +95,7 @@ io.on('connection',(socket)=>{
             console.log(orderId);
             socket.join(orderId)
         });
-        
+
          // Ensure single listener for orderUpdated event
     eventEmitter.removeAllListeners('orderUpdated');
     eventEmitter.on('orderUpdated', (data) => {
