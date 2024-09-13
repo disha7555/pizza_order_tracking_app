@@ -1,7 +1,4 @@
- node_modules/
- node_modules
-node_modules
+node_modules/
 .env
-# Compiled assets (e.g., compiled JS and CSS)
 public/js/
 public/css/
