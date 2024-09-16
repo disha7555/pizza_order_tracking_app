@@ -10,6 +10,7 @@
         </div>
     </div>
 </section>
+
 <section class="mx-auto items-center my-4">
     <h1 class="text-2xl font-bold mb-8 ml-6">All pizzas</h1>
     <!--wrapper for menu items-->
@@ -19,21 +20,21 @@
         <% pizzas.forEach(function(pizza){ %>
 
             
-        <div class="w-full md:w-64">
+        <div class="w-full h-full md:w-96 md:h-full lg:w-72 xl:w-56 lg:h-full xl:h-full 2xl:w-96 2xl:h-full">
 
-            <img class="h-96 w-96 md:h-40 md:w-40 mb-4 mx-auto" src="/img/<%= pizza.image %>" alt="no img"/>
+            <img class="w-64 h-64 md:w-96 md:h-96 lg:h-72 lg:w-72 xl:w-56 xl:h-56 2xl:w-48 2xl:h-48 mb-4 mx-auto" src="/img/<%= pizza.image %>" alt="no img"/>
 
-            <div class="text-center">
-                <h2 class="mb-4 text-xl md:text-xl"><%= pizza.name %></h2>
-                <h2 class="mb-4 text-lg md:text-lg"><%= pizza.description %></h2>
-                <span class="size py-1 px-4 uppercase text-sm md:text-lg"><%= pizza.size %></span>
+            <div class="text-center ">
+                <h2 class="mb-4 text-2xl sm:text-2xl md:text-3xl lg:text-xl"><%= pizza.name %></h2>
+                <h2 class="mb-4 text-xl sm:text-xl md:text-2xl lg:text-lg"><%= pizza.description %></h2>
+                <span class="size py-1 px-4 uppercase text-sm md:text-lg lg:text-base"><%= pizza.size %></span>
                 <div class="flex items-center justify-around mt-6">
                     <span class="font-bold text-lg md:text-xl">₹<%= pizza.price %></span>
                     <button data-pizza="<%=JSON.stringify(pizza) %>" class="add-to-cart py-1 px-6 flex items-center font-bold">
                         <span>+</span>
                         <span class="ml-4 text-lg md:text-xl">Add</span>
                     </button>
-                </div>
+                </div>  
             </div>
 
         </div>
