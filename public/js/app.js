@@ -6351,6 +6351,10 @@ document.addEventListener('DOMContentLoaded', function () {
     toastr__WEBPACK_IMPORTED_MODULE_0___default().success("Order status updated");
   });
 });
+window.addEventListener('load', function () {
+  document.getElementById('loading-screen').style.display = 'none';
+  document.getElementById('content').style.display = 'block'; // Show the content
+});
 
 /***/ }),
 

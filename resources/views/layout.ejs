@@ -26,49 +26,59 @@
     <title>Realtinme Pizza App</title>
   </head>
   <body>
-    <nav class="container mx-auto flex items-center justify-between px-2 lg:px-16 my-4">
-      <div class="lg:px-2 lg:py-2">
-        <a href="/"><img src="/img/brand1.jpeg" alt="no img" class="h-24 w-24 sm:h-16 sm:w-16 md:h-20 md:w-20 lg:h-20 lg:w-20 xl:h-24 xl:w-24 2xl:h-24 2xl:w-24"/></a>
-      </div>
-      <div>
-        <ul class="flex items-center">
-        
-          
-         
-          
-          <li class="ml-6 items-center text-5xl sm:text-xl md:text-xl lg:text-xl xl:text-lg 2xl:text-lg custom-small">
-            <a href="/">Menu</a>
-          </li>
 
-          <% if (user) { %>
-            <!-- Conditionally render the Orders link based on user role -->
-            <li class="ml-6 items-center text-5xl sm:text-xl md:text-xl lg:text-xl xl:text-lg 2xl:text-lg custom-small">
-              <a href="<%= user.role === 'admin' ? '/admin/orders' : '/customer/orders' %>">Orders</a>
-            </li>
-            <li class="ml-6 items-center text-5xl sm:text-xl md:text-xl lg:text-xl xl:text-lg 2xl:text-lg custom-small">
-              <form id="logout" action="/logout" method="post">
-                <a onclick="document.getElementById('logout').submit()" href="#">Logout</a>
-              </form>
-            </li>
-          <% } else { %>
-            <li class="ml-6 items-center text-5xl sm:text-xl md:text-xl lg:text-xl xl:text-lg 2xl:text-lg custom-small"><a href="/register">Register</a></li>
-            <li class="ml-6 items-center text-5xl sm:text-xl md:text-xl lg:text-xl xl:text-lg 2xl:text-lg custom-small"><a href="/login">Login</a></li>
-          <% } %>
-          <!-- <li> <a href="/cart"><img src="/img/cart.jpeg" alt="no img" height="50vh" width="50vh"/></a></li> -->
-          <li class="ml-6 py-2 px-2 flex items-center">
-            <span id="cartCounter" class="items font-bold"><%= session.cart? session.cart.totalQty : ''%></span>
-            <a href="/cart"><i  style="font-size: 1.5rem;" class="fa-solid fa-cart-shopping cart-icon" class="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 lg:h-14 lg:w-14 xl:h-16 xl:w-16"
-              ></i></a>
+     <!-- Loading Screen -->
+     <div id="loading-screen">
+      <div class="spinner"></div>
+      <div>Loading the page, Please wait...</div>
+    </div>
+
+
+
+<div class="content" style="display: none;">
+  <nav class="container mx-auto flex items-center justify-between px-2 lg:px-16 my-4">
+    <div class="lg:px-2 lg:py-2">
+      <a href="/"><img src="/img/brand1.jpeg" alt="no img" class="h-24 w-24 sm:h-16 sm:w-16 md:h-20 md:w-20 lg:h-20 lg:w-20 xl:h-24 xl:w-24 2xl:h-24 2xl:w-24"/></a>
+    </div>
+    <div>
+      <ul class="flex items-center">
+      
+        
+       
+        
+        <li class="ml-6 items-center text-5xl sm:text-xl md:text-xl lg:text-xl xl:text-lg 2xl:text-lg custom-small">
+          <a href="/">Menu</a>
+        </li>
+
+        <% if (user) { %>
+          <!-- Conditionally render the Orders link based on user role -->
+          <li class="ml-6 items-center text-5xl sm:text-xl md:text-xl lg:text-xl xl:text-lg 2xl:text-lg custom-small">
+            <a href="<%= user.role === 'admin' ? '/admin/orders' : '/customer/orders' %>">Orders</a>
           </li>
-        </ul>
-      </div>
-    </nav>
+          <li class="ml-6 items-center text-5xl sm:text-xl md:text-xl lg:text-xl xl:text-lg 2xl:text-lg custom-small">
+            <form id="logout" action="/logout" method="post">
+              <a onclick="document.getElementById('logout').submit()" href="#">Logout</a>
+            </form>
+          </li>
+        <% } else { %>
+          <li class="ml-6 items-center text-5xl sm:text-xl md:text-xl lg:text-xl xl:text-lg 2xl:text-lg custom-small"><a href="/register">Register</a></li>
+          <li class="ml-6 items-center text-5xl sm:text-xl md:text-xl lg:text-xl xl:text-lg 2xl:text-lg custom-small"><a href="/login">Login</a></li>
+        <% } %>
+        <!-- <li> <a href="/cart"><img src="/img/cart.jpeg" alt="no img" height="50vh" width="50vh"/></a></li> -->
+        <li class="ml-6 py-2 px-2 flex items-center">
+          <span id="cartCounter" class="items font-bold"><%= session.cart? session.cart.totalQty : ''%></span>
+          <a href="/cart"><i  style="font-size: 1.5rem;" class="fa-solid fa-cart-shopping cart-icon" class="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 lg:h-14 lg:w-14 xl:h-16 xl:w-16"
+            ></i></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
     <!-- Hidden flash message element -->
     <!-- <div id="flash-messages" data-messages='<%= JSON.stringify({error: messages.error, success: messages.success}) %>' style="display: none;"></div> -->
     <!-- <div id="flash-messages" data-messages='<%= JSON.stringify({error: messages.error, success: messages.success}) %>' style="display: block;"> -->
       <!-- <p>Error: <%= messages.error %></p>
       <p>Success: <%= messages.success %></p> -->
-  </div>
   <!-- Hidden flash message element -->
   <div id="flash-messages" data-messages='<%= JSON.stringify(flash) %>' style="display: none;"></div>
 
