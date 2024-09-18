@@ -24,7 +24,7 @@
     </table>
   </div>
 </section> --> 
-<section class="orders light-section ml-4 lg:ml-10 mx-auto xl:mx-16">
+<section class="orders light-section lg:ml-10 mx-auto xl:mx-16">
   <div class="container mx-2 md:mx-4 lg:mx-auto pt-8">
     <h1 class="font-bold text-lg mb-4 text-center lg:text-left">All Orders</h1>
     <!-- Success message block -->
@@ -35,15 +35,15 @@
         </div>
         <% } %> -->
     <div class="overflow-x-auto">
-      <table class="w-full table-auto bg-white overflow-x:auto text-5xl md:text-lg">
-        <thead>
-          <tr class="bg-gray-100">
-            <th class="px-4 py-2 text-left sm:px-1">Orders</th>
-            <th class="px-4 py-2 text-left sm:px-1">Customer</th>
-            <th class="px-4 py-2 text-left sm:px-1">Address</th>
-            <th class="px-4 py-2 text-left sm:px-1">Status</th>
-            <th class="px-4 py-2 text-left sm:px-1">Placed At</th>
-            <th class="px-4 py-2 text-left sm:px-1 xl:pl-1">Payment Status</th>
+      <table class="w-full table-auto bg-white overflow-x:auto text-5xl md:text-lg border border-gray-400">
+        <thead class="border border-gray-400">
+          <tr class="bg-gray-100 border border-gray-400">
+            <th class="items-center justify-center text-center border border-gray-400">Orders</th>
+            <th class="px-4 py-2 text-left sm:px-1 text-center border border-gray-400">Customer</th>
+            <th class="px-4 py-2 text-left sm:px-1 text-center border border-gray-400">Address</th>
+            <th class="px-4 py-2 text-left sm:px-1 text-center border border-gray-400">Status</th>
+            <th class="px-4 py-2 text-left sm:px-1 text-center border border-gray-400">Placed At</th>
+            <th class="px-4 py-2 text-left sm:px-1 xl:pl-1 text-center border border-gray-400">Payment Status</th>
           </tr>
         </thead>
         <tbody id="orderTableBody" class="items-center justify-center">

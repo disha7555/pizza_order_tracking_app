@@ -43,11 +43,11 @@ function renderItems(items) {
                     </td>
                     <td class="border items-center border-gray-400 px-4 py-2 text-2xl sm:text-2xl md:text-3xl lg:text-xl justify-centerborder text-green-900 md:w-1/6">
                         <div class="inline-block relative w-full lg:w-32 md:w-full">
-                            <form action="/admin/order/status" method="post" class="h-5 w-full">
+                            <form action="/admin/order/status" method="post" class="h-5 w-full px-2">
                             
                             <input type="hidden" name="orderId" value="${order._id}">
 
-                                <select name="status" onchange="this.form.submit()" class="block w-full md:w-24 lg:w-28 xl:w-40  bg-white border border-gray-400" >
+                                <select name="status" onchange="this.form.submit()" class="block w-full md:w-48 lg:w-28 xl:w-36  bg-white border border-gray-400" >
                               <option value="order_placed" ${order.status === 'order_placed' ? 'selected' : ''}>Placed</option>
                                 <option value="confirmed" ${order.status === 'confirmed' ? 'selected' : ''}>Confirmed</option>
                                 <option value="prepared" ${order.status === 'prepared' ? 'selected' : ''}>Prepared</option>

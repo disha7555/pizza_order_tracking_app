@@ -1,4 +1,4 @@
-<section class="status">
+<!-- <section class="status">
     <div class="container mx-auto">
         <div class="w-2/3 mx-auto status-box">
             <div class="flex items-center justify-between mb-12 ml-16 pt-5">
@@ -16,4 +16,58 @@
             </ul>
         </div>
     </div>
-</section>
+</section> -->
+<!-- <section class="status w-screen h-screen lg:w-auto lg:h-auto">
+    <div class="container mx-auto h-full flex items-center justify-center">
+        <div class="w-full max-w-4xl lg:w-2/3 mx-auto status-box">
+            <div class="flex flex-col lg:flex-row items-center lg:items-start justify-between mb-12 lg:ml-16 pt-5">
+                <h1 class="text-2xl lg:text-xl font-bold">Track your Order</h1>
+                <h6 class="py-1 orderid_color px-4 text-xs lg:text-sm mr-0 lg:mr-16"><%= order._id %></h6>
+                <input id="hiddenInput" type="hidden" value="<%= JSON.stringify(order) %>">
+            </div>
+            <ul class="pb-8">
+                <li class="status_line text-xl pb-16" data-status="order_placed" id="order_placed"><span>Order placed</span></li>
+                <li class="status_line text-xl pb-16" data-status="confirmed"><span>Order confirmed</span></li>
+                <li class="status_line text-xl pb-16" data-status="prepared"><span>Order prepared</span></li>
+                <li class="status_line text-xl pb-16" data-status="delivered"><span>Out for delivery</span></li>
+                <li class="status_line text-xl" data-status="completed"><span>Order completed</span></li>
+            </ul>
+        </div>
+    </div>
+</section> -->
+<section class="status w-screen h-screen lg:w-auto lg:h-auto flex flex-col">
+    <div class="container mx-auto flex-1 flex items-start justify-center lg:items-center lg:justify-center">
+        <div class="w-full max-w-4xl lg:w-2/3 mx-auto status-box">
+            <div class="flex flex-col lg:flex-row items-start lg:items-start justify-between mb-12 lg:ml-16 pt-5">
+                <h1 class="text-2xl lg:text-xl font-bold">Track your Order</h1>
+                <h6 class="py-1 orderid_color px-4 text-xs lg:text-sm mr-0 lg:mr-16"><%= order._id %></h6>
+                <input id="hiddenInput" type="hidden" value="<%= JSON.stringify(order) %>">
+            </div>
+            <ul class="pb-8">
+                <li class="status_line text-xl pb-16" data-status="order_placed" id="order_placed"><span>Order placed</span></li>
+                <li class="status_line text-xl pb-16" data-status="confirmed"><span>Order confirmed</span></li>
+                <li class="status_line text-xl pb-16" data-status="prepared"><span>Order prepared</span></li>
+                <li class="status_line text-xl pb-16" data-status="delivered"><span>Out for delivery</span></li>
+                <li class="status_line text-xl" data-status="completed"><span>Order completed</span></li>
+            </ul>
+   
+     <!-- <section class="status w-screen h-screen lg:w-auto lg:h-auto flex flex-col">
+        <div class="container mx-auto flex-1 flex items-start justify-center lg:items-center lg:justify-center px-4 lg:px-0">
+            <div class="w-full max-w-4xl lg:w-2/3 mx-auto status-box p-8 lg:p-12">
+                <div class="flex flex-col lg:flex-row items-start lg:items-start justify-between mb-8 lg:mb-12 lg:ml-16 pt-5">
+                    <h1 class="text-3xl lg:text-2xl font-bold mb-4 lg:mb-0">Track your Order</h1>
+                    <h6 class="py-1 orderid_color px-4 text-sm lg:text-xs mr-0 lg:mr-16"><%= order._id %></h6>
+                    <input id="hiddenInput" type="hidden" value="<%= JSON.stringify(order) %>">
+                </div>
+                <ul class="pb-8">
+                    <li class="status_line text-2xl lg:text-xl pb-4 lg:pb-16" data-status="order_placed" id="order_placed"><span>Order placed</span></li>
+                    <li class="status_line text-2xl lg:text-xl pb-4 lg:pb-16" data-status="confirmed"><span>Order confirmed</span></li>
+                    <li class="status_line text-2xl lg:text-xl pb-4 lg:pb-16" data-status="prepared"><span>Order prepared</span></li>
+                    <li class="status_line text-2xl lg:text-xl pb-4 lg:pb-16" data-status="delivered"><span>Out for delivery</span></li>
+                    <li class="status_line text-2xl lg:text-xl" data-status="completed"><span>Order completed</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>suppressed -->
+    
+    
