@@ -2,6 +2,7 @@ import axios from 'axios';
 import toastr from 'toastr';  
 import 'toastr/build/toastr.min.css';
 import initAdmin from './admin';
+import initStripe from './stripe';
 import moment from 'moment';
 toastr.options = {
     "closeButton": true,    
@@ -74,6 +75,7 @@ function updateStatus(order) {
         if (dataProp1 === 'order_placed') {
             status.classList.add('current');
         }
+
         })
    let defaultclass=document.getElementById('order_placed');
     statuses.forEach((status)=>{
@@ -98,20 +100,47 @@ function updateStatus(order) {
         statuses.forEach((status) => status.offsetHeight); 
     }, 100);
 }
+
+// Initial load
 updateStatus(order);
+//updateStatus(order);
+initStripe();
+
+//socket
 let socket;
+
 document.addEventListener('DOMContentLoaded', () => {
+    //Socket (client side)
     socket=io();
-   if(order){
+   
+    //join
+    //client sends msg named join to server with data i.e. order id which is unique
+    //server of socket is in server.js
+    if(order){
         socket.emit('join',`order_${order._id}`)
     }
     
     let adminAreaPath=window.location.pathname;
-       if(adminAreaPath.includes('admin')){
+    //console.log(adminAreaPath);
+    if(adminAreaPath.includes('admin')){
         initAdmin(socket);
         socket.emit('join','adminRoom')
     }
     });
+
+//listening to the event 
+
+// document.addEventListener('DOMContentLoaded', () => {
+//     socket.on('orderUpdated',(data)=>{
+//         const updatedOrder={...order};
+//         updatedOrder.updatedAt=moment().format();
+//         updatedOrder.status=data.status;
+//         updateStatus(updatedOrder);
+//         toastr.success("Order status updated");
+//         console.log(data)
+//     })
+// });
+
 document.addEventListener('DOMContentLoaded', () => {
     socket.on('orderUpdated', (data) => {
         const updatedOrder = {...order};
