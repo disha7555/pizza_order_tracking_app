@@ -30,18 +30,18 @@ function renderItems(items) {
             return orders.map(order=>{
                 return `
                 <tr>
-                    <td class="border px-1 py-1 md:px-2 md:py-2 lg:px-4 lg:py-2 lg:w-32 text-green-900 md:w-full">
+                    <td class="border items-center justify-centerborder text-green-900 md:w-1/5">
                         <p>${order._id}</p>
                         <div>${renderItems(order.items)}</div>
 
                     </td>
-                    <td class="border px-1 py-1  md:px-2 md:py-2 lg:px-2 lg:py-2 lg:w-32 text-green-900 md:w-full">
+                    <td class="border items-center justify-centerborder text-green-900 md:w-1/12">
                         ${order.customerId.name}
                     </td>
-                    <td class="border px-1 py-1 md:px-2 md:py-2 lg:px-2 lg:py-2 lg:w-32 text-green-900 md:w-full">
+                    <td class="border items-center justify-centerborder text-green-900 md:w-1/5">
                         ${order.address}
                     </td>
-                    <td class="border md:px-2 md:py-2 lg:px-2 lg:py-2 h-10 w-4 w-full md:w-full lg:w-40 md:px-3">
+                    <td class="border items-center justify-centerborder text-green-900 md:w-1/6">
                         <div class="inline-block relative w-full lg:w-32 md:w-full">
                             <form action="/admin/order/status" method="post" class="h-5 w-full">
                             
@@ -63,8 +63,11 @@ function renderItems(items) {
                         </div>
                       
                     </td>
-                    <td class="border px-1 py-1 lg:px-2 lg:py-2 lg:w-32 md:px-2 md:py-2 md:w-32">
+                    <td class="border items-center justify-centerborder text-green-900 md:w-1/12">
                         ${moment(order.createdAt).format('hh:mm A')}
+                    </td>
+                    <td class="border items-center justify-centerborder text-green-900 md:w-1/12">
+                    ${order.paymentStatus?'paid':'not paid'}
                     </td>
                 </tr>
             `}).join('')

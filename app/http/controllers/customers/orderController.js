@@ -72,6 +72,7 @@ function orderController() {
           console.log(req.session.cart.totalPrice);
           console.log(req.body.stripeToken);
           console.log(process.env.STRIPE_PRIVATE_KEY);
+          placedOrder.paymentType='card';
           stripe.charges
             .create({
               amount: req.session.cart.totalPrice * 100,
