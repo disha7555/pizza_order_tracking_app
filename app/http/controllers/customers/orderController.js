@@ -44,10 +44,11 @@ function orderController() {
         });
         console.log("Reached after getting data for insert");
         const result = await order.save();
-        console.log("attempt to save order");
+        console.log("result: ",result);
         const placedOrder = await Order.populate(result, {
           path: "customerId",
         });
+        console.log("placedOrder: ",placedOrder)
         if(paymentType==='cod'){
           placedOrder
           .save()

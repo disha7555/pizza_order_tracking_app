@@ -25,13 +25,16 @@ function statusController() {
     async update(req, res) {
       try {
         await Order.updateOne({ _id: req.body.orderId }, { status: req.body.status });
-
+        if(req.body.status=="completed")
+          {
+            await Order.updateOne({_id:req.body.orderId},{paymentStatus:true})
+          }
         //emit event
 
         //to get eventEmitter instance which was defined on server.js
         const eventEmitter= req.app.get('eventEmitter');
         eventEmitter.emit('orderUpdated',{id:req.body.orderId,status:req.body.status})
-
+        
         res.redirect('/admin/orders');  // Make sure the URL starts with '/'
       } catch (err) {
         console.error(err);
