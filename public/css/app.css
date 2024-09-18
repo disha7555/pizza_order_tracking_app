@@ -254,8 +254,9 @@ section.status {
 }
 
 .status-box ul li small {
-  float: right;
-  margin-right: 23vh;
+  position: absolute; /* Position it absolutely within the parent */
+  right: 0; /* Align it to the right side */
+  margin-right: 1rem; /* Add some margin from the right edge if needed */
   background-color: white;
   color: black;
   width: 17vh;
@@ -263,6 +264,8 @@ section.status {
   text-align: center;
   font-size: 13px;
   font-weight: 500;
+  line-height: 4vh; /* Align text vertically */
+  border-radius: 4px; /* Optional: Add some border radius for styling */
 }
 
 #card-element {

@@ -289,19 +289,33 @@ padding-left: 20px;
   color:  $primary;
 }
 
-.status-box ul li small{
-//   margin-left: 61vh;
-//  padding-top: 0;
-//  padding-bottom: 10px;
-float:right;
-margin-right: 23vh;
-background-color: white;
-color: black;
-width:17vh;
-height:4vh;
-text-align: center;
-font-size:13px;
-font-weight: 500;
+// .status-box ul li small{
+// //   margin-left: 61vh;
+// //  padding-top: 0;
+// //  padding-bottom: 10px;
+// float:right;
+// margin-right: 23vh;
+// background-color: white;
+// color: black;
+// width:17vh;
+// height:4vh;
+// text-align: center;
+// font-size:13px;
+// font-weight: 500;
+// }
+.status-box ul li small {
+  position: absolute;  /* Position it absolutely within the parent */
+  right: 0;            /* Align it to the right side */
+  margin-right: 1rem;  /* Add some margin from the right edge if needed */
+  background-color: white;
+  color: black;
+  width: 17vh;
+  height: 4vh;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 4vh;    /* Align text vertically */
+  border-radius: 4px;  /* Optional: Add some border radius for styling */
 }
 
 
